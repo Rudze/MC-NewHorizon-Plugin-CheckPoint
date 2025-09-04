@@ -1,0 +1,12 @@
+name: checkpoint
+version: '1.0'
+main: fr.rudy.checkpoint.Main
+api-version: '1.21'
+
+depend: [DataBaseAPI]
+
+commands:
+  checkpoint:
+    description: Gère les checkpoints des joueurs.
+    usage: /checkpoint <set|tp> <pseudo>
+    permission: checkpoint.use

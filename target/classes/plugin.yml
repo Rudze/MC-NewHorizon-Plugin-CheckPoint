@@ -1,5 +1,5 @@
 name: checkpoint
-version: '1.0'
+version: '1.1'
 main: fr.rudy.checkpoint.Main
 api-version: '1.21'
 

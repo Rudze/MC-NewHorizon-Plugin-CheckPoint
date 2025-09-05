@@ -89,8 +89,6 @@ public class Main extends JavaPlugin implements TabExecutor, Listener {
                 return true;
             }
 
-            player.sendMessage("§eTéléportation dans 5 secondes. Ne bougez pas et ne prenez pas de dégâts.");
-
             BukkitRunnable countdown = new BukkitRunnable() {
                 int secondsLeft = 5;
 
@@ -120,12 +118,15 @@ public class Main extends JavaPlugin implements TabExecutor, Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
-        if (!event.getFrom().toVector().equals(event.getTo().toVector())) {
+        if (event.getFrom().getX() != event.getTo().getX()
+                || event.getFrom().getY() != event.getTo().getY()
+                || event.getFrom().getZ() != event.getTo().getZ()) {
+
             UUID uuid = event.getPlayer().getUniqueId();
             if (pendingTeleports.containsKey(uuid)) {
                 pendingTeleports.get(uuid).cancel();
                 pendingTeleports.remove(uuid);
-                event.getPlayer().sendActionBar(Component.text("Téléportation annulée: vous avez bougé.").color(NamedTextColor.RED));
+                event.getPlayer().sendActionBar(Component.text("Téléportation annulée: vous vous êtes déplacé.").color(NamedTextColor.RED));
             }
         }
     }
